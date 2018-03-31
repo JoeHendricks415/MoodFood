@@ -10,5 +10,5 @@ export class EatsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
-
+  
 }

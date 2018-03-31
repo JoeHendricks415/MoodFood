@@ -18,7 +18,6 @@ export class ListPage {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
-    // Let's populate this page with some filler content for funzies
     this.icons = ['trophy', 'cafe', 'bowtie', 'nutrition', 'pizza', 'car',
     'beer', 'boat', 'sad', 'ice-cream'];
     this.moods = ['Celebration', 'Tired', 'Fancy', 'Healthy', 'Hungover', 'In A Hurry',
@@ -33,12 +32,13 @@ export class ListPage {
     }
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(EatsPage, {
-      item: item
-    });
-  }
+  // itemTapped(event, item) {
+  //  
+  //   this.navCtrl.push(EatsPage, {
+  //     item: item
+  //   });
+  // }
+
   itemPush(){
     this.navCtrl.setRoot(EatsPage);
   }

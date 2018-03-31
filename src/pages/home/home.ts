@@ -8,8 +8,6 @@ import { ListPage } from '../list/list';
 })
 export class HomePage {
 
-  //listPage: ListPage;
-
   constructor(public navCtrl: NavController) {
 
   }
