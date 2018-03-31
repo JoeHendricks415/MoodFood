@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -16,10 +18,11 @@ export class MyApp {
 
   rootPage: any = HomePage;
   activePage: any;
+  loader: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController, public storage: Storage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -30,6 +33,28 @@ export class MyApp {
       { title: 'Your Destiny', component: DestinyPage }
     ];
     this.activePage = this.pages[0];
+  
+  this.presentLoading();
+
+  this.platform.ready().then(() => {
+
+    this.storage.get('introShown').then((result) => {
+
+  if(result){
+      this.rootPage = 'HomePage';
+    } else {
+      this.rootPage = 'Intro';
+      this.storage.set('introShown', true);
+    }
+    this.loader.dismiss();
+  });
+});
+  }
+  presentLoading(){
+    this.loader = this.loadingCtrl.create({
+      content: "Authenticating..."
+    });
+    this.loader.present();
   }
 
   initializeApp() {
@@ -51,4 +76,5 @@ export class MyApp {
   checkActive(page){
     return page == this.activePage;
   }
+
 }
