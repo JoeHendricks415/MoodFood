@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ListPage } from '../list/list';
+import { IntroPage } from '../intro/intro';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -8,7 +10,7 @@ import { ListPage } from '../list/list';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public storage: Storage) {
 
   }
 
@@ -16,4 +18,12 @@ export class HomePage {
     this.navCtrl.setRoot(ListPage);
   }
 
+  ionViewDidLoad(){
+  this.storage.get('intro-done').then(done => {
+    if(!done){
+      this.storage.set('intro-done', true);
+      this.navCtrl.setRoot(IntroPage);
+    }
+  });
+}
 }

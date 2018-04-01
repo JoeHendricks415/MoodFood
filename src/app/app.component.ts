@@ -2,13 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoadingController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
+import { IntroPage } from '../pages/intro/intro';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,13 +15,13 @@ import { DestinyPage } from '../pages/destiny/destiny';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = IntroPage;
   activePage: any;
-  loader: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController, public storage: Storage) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+     
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -33,28 +32,6 @@ export class MyApp {
       { title: 'Your Destiny', component: DestinyPage }
     ];
     this.activePage = this.pages[0];
-  
-  this.presentLoading();
-
-  this.platform.ready().then(() => {
-
-    this.storage.get('introShown').then((result) => {
-
-  if(result){
-      this.rootPage = 'HomePage';
-    } else {
-      this.rootPage = 'Intro';
-      this.storage.set('introShown', true);
-    }
-    this.loader.dismiss();
-  });
-});
-  }
-  presentLoading(){
-    this.loader = this.loadingCtrl.create({
-      content: "Authenticating..."
-    });
-    this.loader.present();
   }
 
   initializeApp() {
