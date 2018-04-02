@@ -26,13 +26,9 @@ import { IntroPage } from '../pages/intro/intro';
   ],
   imports: [
     BrowserModule,
-<<<<<<< HEAD
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
-=======
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
->>>>>>> fe2039fa5c55a96903ca8b6230dea9763f30e49d
   ],
   bootstrap: [IonicApp],
   entryComponents: [
