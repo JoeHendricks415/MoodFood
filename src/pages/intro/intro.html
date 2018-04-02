@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Mood Food</ion-title>
+        <ion-buttons end>
+      <button ion-button color="primary" (click)="goToHome()">Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-slides pager="true" parallax="true">
+
+<ion-slide style="background-color: #FED217">
+    <h1 ion-text color="light">Welcome To Mood Food!</h1>
+  <img src="assets/imgs/smileC.png" class="slide-image">
+</ion-slide>
+
+<ion-slide style="background-color: #FFC001">
+  <h1 ion-text color="light">Pick a location or use your current location.</h1>
+  <img src="assets/imgs/mapC.png" class="slide-image">
+</ion-slide>
+
+<ion-slide style="background-color: #FFB001" >
+  <h1 ion-text color="light">Based on your current mood, we'll suggest food in your area that will a-peel to you.</h1>
+  <h2 ion-text color="light" class="slide-title">Let's Guac and Roll!</h2>
+  <img src="assets/imgs/bananaC.png" class="slide-image"/>
+  <ion-buttons>
+  <button ion-button large clear icon-end color="light" (click)="goToHome()">Continue</button>
+    </ion-buttons>
+<ion-icon name="ios-restaurant"></ion-icon>
+  </ion-slide>
+</ion-slides>
+</ion-content>

@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ListPage } from '../list/list';
+
+import { IntroPage } from '../intro/intro';
+import { Storage } from '@ionic/storage';
+
 import { Geolocation } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
 
   inputValue: string = "";
   lat: any;
@@ -18,7 +24,8 @@ export class HomePage {
   city: any;
   state: any;
 
-  constructor(public navCtrl: NavController, public geo: Geolocation, public http: HttpClient) {
+
+  constructor(public navCtrl: NavController, public geo: Geolocation, public http: HttpClient, public storage: Storage) {
     this.getCoordinates();
   }
 
@@ -52,6 +59,16 @@ export class HomePage {
     this.navCtrl.setRoot(ListPage);
   }
 
+
+  ionViewDidLoad(){
+  this.storage.get('intro-done').then(done => {
+    if(!done){
+      this.storage.set('intro-done', true);
+      this.navCtrl.setRoot(IntroPage);
+    }
+  });
+}
+
   setInputValue(){
     this.inputValue;
   }
@@ -59,5 +76,6 @@ export class HomePage {
   getInputValue(){
     console.log(this.inputValue);
   }
+
 
 }
