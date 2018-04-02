@@ -9,7 +9,24 @@
 
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let item of items?.businesses">
+    <img [src]="item.image_url"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{item.name}}
+        <p>
+          Categorie: {{item.categories[0].title}}
+        </p>
+        <p>
+          Rating: {{item.rating}}
+        </p>
+        <p>
+        <a href="{{item.url}}">Click for more info</a>
+        </p>
+        </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+  <!--<ion-card>
     <img src="https://s3-media1.fl.yelpcdn.com/bphoto/6Xz1hkRJ1LKcXOm6QnyMlw/o.jpg"/>
     <ion-card-content>
       <ion-card-title>
@@ -20,42 +37,6 @@
         say things like this.
       </p>
     </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="https://s3-media1.fl.yelpcdn.com/bphoto/6Xz1hkRJ1LKcXOm6QnyMlw/o.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-        Food Place That Serves Food
-        </ion-card-title>
-      <p>
-        Description of the food place that serves food. This is pretty cool that these cards can
-        say things like this.
-      </p>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="https://s3-media1.fl.yelpcdn.com/bphoto/6Xz1hkRJ1LKcXOm6QnyMlw/o.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-        Food Place That Serves Food
-        </ion-card-title>
-      <p>
-        Description of the food place that serves food. This is pretty cool that these cards can
-        say things like this.
-      </p>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="https://s3-media1.fl.yelpcdn.com/bphoto/6Xz1hkRJ1LKcXOm6QnyMlw/o.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-        Food Place That Serves Food
-        </ion-card-title>
-      <p>
-        Description of the food place that serves food. This is pretty cool that these cards can
-        say things like this.
-      </p>
-    </ion-card-content>
-  </ion-card>
+  </ion-card>-->
 
 </ion-content>
