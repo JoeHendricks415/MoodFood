@@ -12,12 +12,23 @@
 
   <ion-row center>  
     <ion-col text-center>
-        <ion-item>
-            <ion-label fixed></ion-label>
-            <br>
-            <ion-input type="text" value=""></ion-input>
-          </ion-item>
-  <button ion-button (click)="itemPush()">Continue</button>
+        <ion-list>
+            <ion-item>
+              <ion-label stacked>City</ion-label>
+              <ion-input type="text" [(ngModel)]="selectedCity"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>State</ion-label>
+              <ion-input type="text" [(ngModel)]="selectedState"></ion-input>
+            </ion-item>
+          </ion-list>
+  <button ion-button (click)="getCoordinates()">Get Coordinates</button>
+  <button ion-button (click)="getData()">Get Json </button>
+  <button ion-button (click)="getCity()">Get City</button>
     </ion-col> 
   </ion-row>
+  <p><strong>Your Location:</strong></p>
+  <p>Lattitude: {{lat}}</p>
+  <p>Longitude: {{long}}</p>
+
 </ion-content>

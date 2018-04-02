@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
+import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +28,7 @@ import { IntroPage } from '../pages/intro/intro';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,6 +42,7 @@ import { IntroPage } from '../pages/intro/intro';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

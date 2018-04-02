@@ -9,13 +9,16 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemPush()">
+    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
       {{item.title}}
-      <div class="item-note" item-end>
+      <!--<div class="item-note" item-end>
         {{item.note}}
-      </div>
+      </div>-->
+      <!--<ion-option ion-item *ngIf="item.title === 'Liquid Courage'"></ion-option>
+      <ion-item *ngIf="item.title === 'Healthy'"></ion-item>-->
     </button>
+
   </ion-list>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
