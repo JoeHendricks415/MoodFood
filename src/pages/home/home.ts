@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ListPage } from '../list/list';
+<<<<<<< HEAD
 import { Geolocation } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+=======
+import { IntroPage } from '../intro/intro';
+import { Storage } from '@ionic/storage';
+>>>>>>> fe2039fa5c55a96903ca8b6230dea9763f30e49d
 
 @Component({
   selector: 'page-home',
@@ -11,12 +16,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomePage {
 
+<<<<<<< HEAD
   inputValue: string = "";
   lat: any;
   long: any;
   locationJson: any;
   city: any;
   state: any;
+=======
+  constructor(public navCtrl: NavController, public storage: Storage) {
+>>>>>>> fe2039fa5c55a96903ca8b6230dea9763f30e49d
 
   constructor(public navCtrl: NavController, public geo: Geolocation, public http: HttpClient) {
     this.getCoordinates();
@@ -52,6 +61,7 @@ export class HomePage {
     this.navCtrl.setRoot(ListPage);
   }
 
+<<<<<<< HEAD
   setInputValue(){
     this.inputValue;
   }
@@ -60,4 +70,14 @@ export class HomePage {
     console.log(this.inputValue);
   }
 
+=======
+  ionViewDidLoad(){
+  this.storage.get('intro-done').then(done => {
+    if(!done){
+      this.storage.set('intro-done', true);
+      this.navCtrl.setRoot(IntroPage);
+    }
+  });
+}
+>>>>>>> fe2039fa5c55a96903ca8b6230dea9763f30e49d
 }

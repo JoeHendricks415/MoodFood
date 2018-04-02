@@ -12,6 +12,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
+import { IntroPage } from '../pages/intro/intro';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     EatsPage,
-    DestinyPage
+    DestinyPage,
+    IntroPage
   ],
   imports: [
     BrowserModule,
+<<<<<<< HEAD
     HttpClientModule,
     IonicModule.forRoot(MyApp)
+=======
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
+>>>>>>> fe2039fa5c55a96903ca8b6230dea9763f30e49d
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     EatsPage,
-    DestinyPage
+    DestinyPage,
+    IntroPage
   ],
   providers: [
     StatusBar,
