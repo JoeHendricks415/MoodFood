@@ -84,12 +84,7 @@ export class HomePage {
     });
   }
   mapResults(array:any){
-    // this.locationJson.find((address_components)=>{
-    //   address_components.find((types)=>{
-    //     return types.postal_code ==="long_name";
-
-    //   });
-    // });
+    
   }
 
   itemPush(){
