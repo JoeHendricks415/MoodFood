@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { YelpProvider } from '../../providers/yelp/yelp';
+
 
 @Component({
   selector: 'page-eats',
@@ -9,13 +11,12 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EatsPage {
 
-
   public items:any;
   public mood:any;
   selectedItem: string;
   stringURL = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider) {
     this.ionViewDidLoad();
     this.getData();
   }
@@ -41,7 +42,9 @@ export class EatsPage {
       this.items = result;
     });
   }
+  callService(){
+    this.yelpProvider.getRestaurants(null,null);
 
-
+  }
   
 }

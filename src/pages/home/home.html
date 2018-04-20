@@ -15,20 +15,21 @@
         <ion-list>
             <ion-item>
               <ion-label stacked>City</ion-label>
-              <ion-input type="text" [(ngModel)]="selectedCity"></ion-input>
+              <ion-input  id="city" type="text" [(ngModel)]="selectedCity"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label stacked>State</ion-label>
-              <ion-input type="text" [(ngModel)]="selectedState"></ion-input>
+              <ion-input  id="state" type="text" [(ngModel)]="selectedState"></ion-input>
             </ion-item>
           </ion-list>
-  <button ion-button (click)="getCoordinates()">Get Coordinates</button>
-  <button ion-button (click)="getData()">Get Json </button>
-  <button ion-button (click)="getCity()">Get City</button>
+  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+  <p>Or</p>
+  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
+  <!-- <button ion-button (click)="callService()">Get SERVICE</button> -->
     </ion-col> 
   </ion-row>
-  <p><strong>Your Location:</strong></p>
-  <p>Lattitude: {{lat}}</p>
-  <p>Longitude: {{long}}</p>
-
+  <p><strong>Your Current Location:</strong></p>
+  <!-- <p>Lattitude: {{lat}}</p>
+  <p>Longitude: {{long}}</p> -->
+  <p>{{geoLocation}}</p>
 </ion-content>

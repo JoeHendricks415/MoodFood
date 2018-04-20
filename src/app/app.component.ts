@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,6 +13,7 @@ import { IntroPage } from '../pages/intro/intro';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = IntroPage;
@@ -53,5 +54,6 @@ export class MyApp {
   checkActive(page){
     return page == this.activePage;
   }
+
 
 }

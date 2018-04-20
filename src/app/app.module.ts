@@ -9,11 +9,14 @@ import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AddressPage } from '../pages/address/address';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { IntroPage } from '../pages/intro/intro';
+import { YelpProvider } from '../providers/yelp/yelp';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +25,15 @@ import { IntroPage } from '../pages/intro/intro';
     ListPage,
     EatsPage,
     DestinyPage,
-    IntroPage
+    IntroPage,
+    
+    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
-    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,13 +42,16 @@ import { IntroPage } from '../pages/intro/intro';
     ListPage,
     EatsPage,
     DestinyPage,
-    IntroPage
+    IntroPage,
+       
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    YelpProvider,
+    
   ]
 })
 export class AppModule {}
