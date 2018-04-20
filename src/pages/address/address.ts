@@ -16,8 +16,6 @@ export class Address{
     this.buildAddress();
     
     }
-
-    buildAddress(){
-        
+    buildAddress(){ 
     }
 }

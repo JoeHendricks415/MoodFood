@@ -43,6 +43,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     EatsPage,
     DestinyPage,
     IntroPage,
+
        
   ],
   providers: [

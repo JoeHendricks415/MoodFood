@@ -12,7 +12,7 @@ export class ListPage {
   icons: string[];
   moods: string[];
   items: Array<{title: string, icon: string}>;
-
+  icons2: string[];
 
 
 
@@ -24,6 +24,8 @@ export class ListPage {
     'beer', 'boat', 'sad', 'ice-cream'];
     this.moods = ['Celebration', 'Tired', 'Fancy', 'Healthy', 'Hungover', 'In A Hurry',
     'Liquid Courage', 'Munchies', 'Sad', 'Lo-On-Sugar'];
+
+    
 
     this.items = [];
     for (let i = 0; i < 10; i++) {

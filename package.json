@@ -11,7 +11,6 @@
     "test": "jasmine",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
-    
   },
   "dependencies": {
     "@angular/animations": "5.2.9",

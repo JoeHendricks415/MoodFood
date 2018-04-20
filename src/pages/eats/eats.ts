@@ -19,14 +19,12 @@ export class EatsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider) {
     this.ionViewDidLoad();
     this.getData();
-    this.postData();
   }
 
   ionViewDidLoad(){
     if(this.navParams.get('title') === "Liquid Courage"){
       //console.log("found match");
-      //this.stringURL = "assets/mock/barsTest.json";
-      this.stringURL = "http://localhost:8080/restaurants?term=food&location=19107";
+      this.stringURL = "assets/mock/barsTest.json";
       //console.log(this.stringURL);
       //this.selectedItem = 'assets/mock/bars.json';
     } else if (this.navParams.get('title') === "Healthy"){
@@ -46,18 +44,7 @@ export class EatsPage {
   }
   callService(){
     this.yelpProvider.getRestaurants(null,null);
-  }
 
-  postData(){
-    //var url = 'assets/mock/barsTest.json';
-    var url = 'http://localhost:5555/businesses';
-    let postData = new FormData();
-    postData.append('key','value');
-    postData.append('username', 'info@mail.com');
-    let data: Observable<any> = this.http.post(url, postData);
-    data.subscribe(data =>{
-      console.log(data);
-    });
   }
   
 }
