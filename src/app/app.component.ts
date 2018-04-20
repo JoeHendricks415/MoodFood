@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -7,19 +7,22 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
+import { IntroPage } from '../pages/intro/intro';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = IntroPage;
   activePage: any;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+     
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -51,4 +54,6 @@ export class MyApp {
   checkActive(page){
     return page == this.activePage;
   }
+
+
 }
