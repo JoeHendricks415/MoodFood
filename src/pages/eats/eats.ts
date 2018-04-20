@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EatsPage {
 
-
   public items:any;
   public mood:any;
   selectedItem: string;
@@ -18,6 +17,7 @@ export class EatsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
     this.ionViewDidLoad();
     this.getData();
+    this.postData();
   }
 
   ionViewDidLoad(){
@@ -32,6 +32,8 @@ export class EatsPage {
     }
   }
 
+
+
   getData(){
     //this.ionViewDidLoad();
     //console.log(this.stringURL);
@@ -41,6 +43,19 @@ export class EatsPage {
       this.items = result;
     });
   }
+
+  postData(){
+    //var url = 'assets/mock/barsTest.json';
+    var url = 'http://localhost:5555/businesses';
+    let postData = new FormData();
+    postData.append('key','value');
+    postData.append('username', 'info@mail.com');
+    let data: Observable<any> = this.http.post(url, postData);
+    data.subscribe(data =>{
+      console.log(data);
+    });
+  }
+
 
 
   
