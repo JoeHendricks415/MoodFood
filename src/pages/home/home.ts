@@ -13,6 +13,7 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+import { YelpProvider } from '../../providers/yelp/yelp';
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,7 @@ import {
 })
 export class HomePage {
 
+  addressComponent: any;
   form;
   params: Object;
   pushPage:any;
@@ -57,7 +59,7 @@ export class HomePage {
       this.geo.getCurrentPosition(options).then( pos => {
       this.lat = pos.coords.latitude;
       this.long = pos.coords.longitude;
-
+      
       this.getLocation();
     }).catch( err => console.log(err));
     
@@ -67,11 +69,7 @@ export class HomePage {
   setInput(){
     this.params = {id:this.userInput};
     this.pushPage = ListPage;
-    
-    // let data: Observable<any> = this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+this.geoLocation+'&key=AIzaSyAoDH7pW6AzXoIUqg0EXyMNWfNbrLSlL4U');
-    // data.subscribe(result => {
-    //   this.addressJson = result;
-    // });
+  
   }
 
   //take result array and get address_component, type, postal_code from it and set as location to be passed to backend
@@ -80,11 +78,22 @@ export class HomePage {
     data.subscribe(result => {
       this.locationJson = result;
       console.log(this.locationJson);
+      console.log(JSON.stringify(this.locationJson));
+      this.geoLocation = this.mapResults(this.locationJson);
+      console.log(this.geoLocation);
       
     });
   }
+  
   mapResults(array:any){
+    let postalCode;
+    array.results[0].address_components.forEach( (obj) => {
+    if(obj.types.includes('postal_code')){
+    postalCode =obj.long_name;
+    }
     
+    });
+    return postalCode;
   }
 
   itemPush(){
