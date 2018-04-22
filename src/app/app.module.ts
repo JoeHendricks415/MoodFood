@@ -9,10 +9,7 @@ import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
-<<<<<<< HEAD
 //import { AddressPage } from '../pages/address/address';
-=======
->>>>>>> c37bcfe0fd15ae5be504d226d1fc3a6b2cf361c7
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
