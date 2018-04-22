@@ -1,20 +1,5 @@
 page-eats {
-    .capitalize {
-        text-transform: capitalize;
-     }
-     .swiper-pagination-bullet-active {
-        background: #000000; 
-    }
-    .toolbar-background {
-        background: #FFFFFF;
-        border-color: transparent;
-    }
-    .slide-title {
-        margin-top: 2.8rem;
-        font-size: 22px;
-    }
-    .item-md h1 {
-        @include margin(2px, 0);
-        font-size: 32px;
+    .center{
+        text-align: center;
     }
 }

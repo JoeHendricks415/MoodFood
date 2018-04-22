@@ -7,24 +7,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3 align ="center">Enter your location...</h3>
+<ion-content class="bg-style" padding>
+  <h3 align ="center">Enter a location...</h3>
 
   <ion-row center>  
     <ion-col text-center>
         <ion-list>
-            <ion-item>
+            <ion-item class="input-style">
               <ion-label stacked>City</ion-label>
-              <ion-input  id="city" type="text" [(ngModel)]="selectedCity"></ion-input>
+              <ion-input id="city" type="text" [(ngModel)]="selectedCity"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="input-style">
               <ion-label stacked>State</ion-label>
-              <ion-input  id="state" type="text" [(ngModel)]="selectedState"></ion-input>
+              <ion-input id="state" type="text" [(ngModel)]="selectedState"></ion-input>
             </ion-item>
           </ion-list>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+  <button class="button-style" ion-button [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
   <p>Or</p>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
+  <button class="button-style" ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
   <!-- <button ion-button (click)="callService()">Get SERVICE</button> -->
     </ion-col> 
   </ion-row>

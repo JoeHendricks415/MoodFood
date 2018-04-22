@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar hideBackButton="false">
+  <ion-navbar class="bg-style" hideBackButton="false">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,21 +8,18 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card *ngFor="let item of items?.businesses">
+<ion-content class="bg-style" padding>
+  <ion-card class="card-sytle" *ngFor="let item of items?.businesses">
     <img [src]="item.image_url"/>
     <ion-card-content>
       <ion-card-title>
-        {{item.name}}
-        <p>
-          Categorie: {{item.categories[0].title}}
-        </p>
-        <p>
-          Rating: {{item.rating}}
-        </p>
-        <p>
-        <a href="{{item.url}}">Click for more info</a>
-        </p>
+        <div class="center">{{item.name}}
+          <p style="font-size:18px"> {{item.rating}} Stars and {{ item.is_closed === 'false' ? 'We Are Closed!' : 'We Are Open!' }}</p>
+        <p>Category: {{item.categories[0].title}}</p>
+        <p>Address: {{item.location.display_address}}</p>
+          <p><a href="tel:{{item.display_phone}}" class="button button-positive">Call {{item.display_phone}}</a></p>
+          <p><a href="{{item.url}}">Website</a></p></div>
+        
         </ion-card-title>
     </ion-card-content>
   </ion-card>

@@ -23,13 +23,26 @@ export class EatsPage {
 
   ionViewDidLoad(){
     if(this.navParams.get('title') === "Liquid Courage"){
-      //console.log("found match");
-      this.stringURL = "assets/mock/barsTest.json";
-      //console.log(this.stringURL);
+      this.stringURL = "http://localhost:8080/restaurants?term=bar&location=08087";
       //this.selectedItem = 'assets/mock/bars.json';
     } else if (this.navParams.get('title') === "Healthy"){
-      this.stringURL = 'assets/mock/healthy.json';
-      //console.log(this.navParams.get('title'));
+      this.stringURL = "http://localhost:8080/restaurants?term=healthy&location=08087";
+    } else if (this.navParams.get('title') === "Celebration"){
+      this.stringURL = "http://localhost:8080/restaurants?term=celebration&location=08087";
+    } else if (this.navParams.get('title') === "Tired"){
+      this.stringURL = "http://localhost:8080/restaurants?term=coffee&location=08087";
+    } else if (this.navParams.get('title') === "Fancy"){
+      this.stringURL = "http://localhost:8080/restaurants?term=steak&location=08087";
+    } else if(this.navParams.get('title') === "Hungover"){
+      this.stringURL = "http://localhost:8080/restaurants?term=greasy&location=08087";
+    } else if(this.navParams.get('title') === "In A Hurry"){
+      this.stringURL = "http://localhost:8080/restaurants?term=fastfood&location=08087";
+    } else if(this.navParams.get('title') === "Munchies"){
+      this.stringURL = "http://localhost:8080/restaurants?term=munchie&location=08087";
+    } else if(this.navParams.get('title') === "Sad"){
+      this.stringURL = "http://localhost:8080/restaurants?term=icecream&location=08087";
+    } else if(this.navParams.get('title') === "Lo-On-Sugar"){
+      this.stringURL = "http://localhost:8080/restaurants?term=candy&location=08087";
     }
   }
 
