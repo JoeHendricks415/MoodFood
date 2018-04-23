@@ -67,8 +67,8 @@ export class EatsPage {
     });
   }
 
-  callService(){
-    this.ionViewDidLoad();
-    this.items = this.yelpProvider.getRestaurants("icecream","08087");
-  }
+  // callService(){
+  //   this.ionViewDidLoad();
+  //   this.items = this.yelpProvider.getRestaurants("icecream","08087");
+  // }
 }

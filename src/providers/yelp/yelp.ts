@@ -11,6 +11,7 @@ export class YelpProvider {
   location:string = "";
   data: any;
   public items:any;
+
   constructor(public http: HttpClient) {
     let item = this.term;
     console.log('Hello YelpProvider Provider');
