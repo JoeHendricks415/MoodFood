@@ -1,25 +1,24 @@
 <ion-header>
-  <ion-navbar class="bg-style" hideBackButton="false">
+  <ion-navbar class="card-sytle" hideBackButton="false">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title align="right">Local Eats</ion-title>
+    <ion-title align-title="right">{{selectedItem}} Eats</ion-title>
   </ion-navbar>
 </ion-header>
-
 
 <ion-content class="bg-style" padding>
   <ion-card class="card-sytle" *ngFor="let item of items?.businesses">
     <img [src]="item.image_url"/>
     <ion-card-content>
       <ion-card-title>
-        <div class="center">{{item.name}}
-          <p style="font-size:18px"> {{item.rating}} Stars and {{ item.is_closed === 'false' ? 'We Are Closed!' : 'We Are Open!' }}</p>
-        <p>Category: {{item.categories[0].title}}</p>
-        <p>Address: {{item.location.display_address}}</p>
-          <p><a href="tel:{{item.display_phone}}" class="button button-positive">Call {{item.display_phone}}</a></p>
-          <p><a href="{{item.url}}">Website</a></p></div>
-        
+        <div class="center"><p style="font-size:23px"><b>{{item.name}}</b></p>
+          <p style="font-size:16px"> {{item.rating}} Stars and {{ item.is_closed === 'false' ? 'We Are Closed!' : 'We Are Open!' }}</p>
+          <p style="font-size:14px">Category: {{item.categories[0].title}}</p>
+          <ion-card class="bg-style"><p><a href="tel:{{item.display_phone}}" class="button button-positive">Give Us A Ring-A-Ling!</a></p>
+          <p><a href="http://maps.google.com/?q={{item.location.display_address[0]}} {{item.location.display_address[1]}}" target="_blank">Find Out Where We Are!</a></p>
+          <p><a href="{{item.url}}" target="_blank">Visit Our Website!</a></p></ion-card>
+        </div>
         </ion-card-title>
     </ion-card-content>
   </ion-card>

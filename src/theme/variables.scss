@@ -86,3 +86,9 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$toolbar-background: rgb(255, 153, 0);
+
+[text-color="my-custom-color"] {
+  color: rgb(7, 0, 0);
+}

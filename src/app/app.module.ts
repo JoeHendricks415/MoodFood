@@ -9,6 +9,7 @@ import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AboutPage } from '../pages/about/about';
 //import { AddressPage } from '../pages/address/address';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,8 +27,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     EatsPage,
     DestinyPage,
     IntroPage,
-    
-    
+    AboutPage,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +43,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     EatsPage,
     DestinyPage,
     IntroPage,
-    
-       
+    AboutPage,
   ],
   providers: [
     StatusBar,

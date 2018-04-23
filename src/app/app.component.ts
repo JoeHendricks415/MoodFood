@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 import { EatsPage } from '../pages/eats/eats';
 import { DestinyPage } from '../pages/destiny/destiny';
 import { IntroPage } from '../pages/intro/intro';
+import { AboutPage } from '../pages/about/about';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +32,7 @@ export class MyApp {
       { title: 'Location', component: HomePage },
       { title: 'Mood', component: ListPage },
       { title: 'Local Eats', component: EatsPage },
-      { title: 'Your Destiny', component: DestinyPage }
+      { title: 'About Us', component: AboutPage }
     ];
     this.activePage = this.pages[0];
   }
@@ -54,6 +56,4 @@ export class MyApp {
   checkActive(page){
     return page == this.activePage;
   }
-
-
 }

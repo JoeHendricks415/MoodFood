@@ -5,9 +5,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="card-sytle">
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]="checkActive(p)" (click)="openPage(p)">
+      <button class="card-sytle" menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]="checkActive(p)" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
