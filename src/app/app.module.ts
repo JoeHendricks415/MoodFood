@@ -34,7 +34,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     IonicStorageModule.forRoot(),
     HttpClientModule,
   ],
-  bootstrap: [YelpProvider, IonicApp],
+  bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
@@ -50,7 +50,6 @@ import { YelpProvider } from '../providers/yelp/yelp';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     YelpProvider,
-    
   ]
 })
 export class AppModule {}

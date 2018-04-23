@@ -16,7 +16,7 @@ export class EatsPage {
   public mood:any;
   selectedItem = "";
   stringURL = "";
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider) {
     this.ionViewDidLoad();
     this.getData();

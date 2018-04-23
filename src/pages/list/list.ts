@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { EatsPage } from '../eats/eats';
 import { MyApp } from '../../app/app.component';
-import { YelpProvider } from '../../providers/yelp/yelp';
+//import { YelpProvider } from '../../providers/yelp/yelp';
 
 @Component({
   selector: 'page-list',
@@ -74,6 +74,6 @@ export class ListPage {
   itemSelected(item: string) {
 
     console.log("Selected Item", item);
-    this.navCtrl.push(YelpProvider, item);
-  }
+    this.navCtrl.push(EatsPage, item);
+  } 
 }
