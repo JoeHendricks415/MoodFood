@@ -9,8 +9,9 @@ import { HomePage } from '../../pages/home/home';
 export class YelpProvider {
 
   term:string = "";
-  location:string = "";
-  data: any;
+  location:any;
+  paramData: any;
+
   constructor(public http: HttpClient) {
     let item = this.term;
     console.log('Hello YelpProvider Provider');
@@ -27,5 +28,8 @@ export class YelpProvider {
         this.data = data;
         console.log(data); 
     })
+  }
+  setLocation(){
+    
   }
 }

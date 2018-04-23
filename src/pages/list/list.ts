@@ -74,6 +74,6 @@ export class ListPage {
   itemSelected(item: string) {
 
     console.log("Selected Item", item);
-    this.navCtrl.push(YelpProvider, item);
+    this.navCtrl.push(EatsPage, item);
   }
 }

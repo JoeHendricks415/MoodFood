@@ -15,16 +15,19 @@ export class EatsPage {
   public mood:any;
   selectedItem: string;
   stringURL = "";
+  location: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider) {
+    this.location = navParams.get("location");
+    console.log(location);
     this.ionViewDidLoad();
     this.getData();
+
   }
 
   ionViewDidLoad(){
     if(this.navParams.get('title') === "Liquid Courage"){
       this.stringURL = "http://localhost:8080/restaurants?term=bar&location=08087";
-      //this.selectedItem = 'assets/mock/bars.json';
     } else if (this.navParams.get('title') === "Healthy"){
       this.stringURL = "http://localhost:8080/restaurants?term=healthy&location=08087";
     } else if (this.navParams.get('title') === "Celebration"){
