@@ -72,8 +72,8 @@ export class HomePage {
 
       // console.log(JSON.stringify(this.locationJson));
 
-      console.log(this.locationJson);
-      console.log(JSON.stringify(this.locationJson));
+      // console.log(this.locationJson);
+      // console.log(JSON.stringify(this.locationJson));
       this.geoLocation = this.mapResults(this.locationJson);
       console.log(this.geoLocation);
       
