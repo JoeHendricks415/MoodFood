@@ -32,7 +32,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,8 +49,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    YelpProvider
-    
+    YelpProvider,
   ]
 })
 export class AppModule {}

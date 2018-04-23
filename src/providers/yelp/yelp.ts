@@ -8,15 +8,15 @@ import { Observable } from 'rxjs/Observable';
 export class YelpProvider {
 
   term:string = "";
-<<<<<<< HEAD
+
   location:any;
   paramData: any;
-
-=======
-  location:string = "";
+  // location:string = "";
   data: any;
   public items:any;
->>>>>>> master
+
+
+
   constructor(public http: HttpClient) {
     let item = this.term;
     console.log('Hello YelpProvider Provider');
@@ -35,18 +35,6 @@ export class YelpProvider {
     return this.items;
     }
 
-<<<<<<< HEAD
-    this.http.get(endpoint).subscribe(data => function(data){
-      console.log('hello')
-        console.log(data);
-        this.data = data;
-        console.log(data); 
-    })
-  }
-  setLocation(){
-    
-  }
-=======
   // getRestaurants(term:String, location:String){
 
   // //  const endpoint = `http://localhost:8080/restaurants?term=${term}&location=${location}`;
@@ -59,5 +47,4 @@ export class YelpProvider {
   //       console.log(data); 
   //   });
   // }
->>>>>>> master
 }

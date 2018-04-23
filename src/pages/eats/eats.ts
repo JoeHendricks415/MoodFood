@@ -28,12 +28,8 @@ export class EatsPage {
 
   ionViewDidLoad(){
     if(this.navParams.get('title') === "Liquid Courage"){
-<<<<<<< HEAD
-      this.stringURL = "http://localhost:8080/restaurants?term=bar&location=08087";
-=======
       this.stringURL = "http://localhost:8080/restaurants?term=bar&location=08078";
       this.selectedItem = "Liquid Courage";
->>>>>>> master
     } else if (this.navParams.get('title') === "Healthy"){
       this.stringURL = "http://localhost:8080/restaurants?term=healthy&location=08078";
       this.selectedItem = "Healthy";
@@ -75,8 +71,8 @@ export class EatsPage {
     });
   }
 
-  callService(){
-    this.ionViewDidLoad();
-    this.items = this.yelpProvider.getRestaurants("icecream","08087");
-  }
+  // callService(){
+  //   this.ionViewDidLoad();
+  //   this.items = this.yelpProvider.getRestaurants("icecream","08087");
+  // }
 }
