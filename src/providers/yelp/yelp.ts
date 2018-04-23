@@ -1,14 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { LocationPage } from '../../pages/location/location';
+import { ListPage } from '../../pages/list/list';
+import { HomePage } from '../../pages/home/home';
 
 
 
 @Injectable()
 export class YelpProvider {
 
+  term:string = "";
+  location:string = "";
   data: any;
   constructor(public http: HttpClient) {
+    let item = this.term;
     console.log('Hello YelpProvider Provider');
   }
 

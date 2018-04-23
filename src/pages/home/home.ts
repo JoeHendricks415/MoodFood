@@ -7,12 +7,8 @@ import { Storage } from '@ionic/storage';
 import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import {
-  FormGroup,
-  FormControl,
-  Validators
-} from '@angular/forms';
 
 @Component({
   selector: 'page-home',
@@ -20,7 +16,7 @@ import {
 })
 export class HomePage {
 
-  form;
+  form:FormGroup;
   params: Object;
   pushPage:any;
   navCtrl: any;
@@ -29,21 +25,18 @@ export class HomePage {
   selectedState: string = "";
   lat: any;
   long: any;
-  addressJson:any;
   locationJson: any;
   userInput:string = "";
   geoLocation:string = "";
-  zipCode:any;
-  first:any;
-
-
+ 
+ 
   constructor(navCtrl: NavController, public geo: Geolocation, public http: HttpClient, public storage: Storage) {
     this.params = {id:this.geoLocation};
     this.pushPage = ListPage;
     this.getCoordinates();
     this.form = new FormGroup({
-      selectedCity: new FormControl("", Validators.required),
-      selectedState: new FormControl("", Validators.required)
+      selectedCity: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      selectedState: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')])
     });
     this.userInput = this.selectedCity + " " +this.selectedState;
   }
@@ -65,6 +58,7 @@ export class HomePage {
 
 //convert input from user to postal_code to be sent as location passed to backend
   setInput(){
+    
     this.params = {id:this.userInput};
     this.pushPage = ListPage;
   
@@ -75,7 +69,11 @@ export class HomePage {
     let data: Observable<any> = this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+this.lat+','+this.long+'&key=AIzaSyAoDH7pW6AzXoIUqg0EXyMNWfNbrLSlL4U');
     data.subscribe(result => {
       this.locationJson = result;
+
       // console.log(JSON.stringify(this.locationJson));
+
+      console.log(this.locationJson);
+      console.log(JSON.stringify(this.locationJson));
       this.geoLocation = this.mapResults(this.locationJson);
       console.log(this.geoLocation);
       
@@ -88,6 +86,7 @@ export class HomePage {
     if(obj.types.includes('postal_code')){
     postalCode =obj.long_name;
     }
+
     });
     return postalCode;
   }
