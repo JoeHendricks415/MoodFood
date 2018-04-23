@@ -1,15 +1,14 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="color1" hideBackButton="false">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title align="right">Location</ion-title>
+    <ion-title align-title="right"><span text-color="my-custom-color">Location</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="bg-style" padding>
   <h3 align ="center">Enter a location...</h3>
-
   <ion-row center>  
     <ion-col text-center>
       <form (ngSubmit)="onSubmit(form)" [formGroup]="form">

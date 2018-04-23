@@ -34,10 +34,17 @@
     background: rgb(0, 0, 0);
 }
 
-.toolbar-background {
-    background-color: #FED217;
-  }
+//$toolbar-background: #FED217;
+
+  //.toolbar-background {
+  //  background-color: rgb(250, 188, 55);
+  //}
 
 .button-style{
     background: rgb(212, 145, 0);
 }
+
+$colors: (
+  primary:    rgb(0, 0, 0),
+  secondary:  #fff,
+);
