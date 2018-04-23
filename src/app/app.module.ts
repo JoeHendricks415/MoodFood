@@ -10,7 +10,6 @@ import { DestinyPage } from '../pages/destiny/destiny';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AboutPage } from '../pages/about/about';
-//import { AddressPage } from '../pages/address/address';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

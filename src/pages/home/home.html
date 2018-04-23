@@ -11,24 +11,23 @@
   <h3 align ="center">Enter a location...</h3>
   <ion-row center>  
     <ion-col text-center>
+      <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
         <ion-list>
             <ion-item class="input-style">
               <ion-label stacked>City</ion-label>
-              <ion-input id="city" type="text" [(ngModel)]="selectedCity"></ion-input>
+              <ion-input formControlName="selectedCity" required type="text" [(ngModel)]="selectedCity"></ion-input>
             </ion-item>
             <ion-item class="input-style">
               <ion-label stacked>State</ion-label>
-              <ion-input id="state" type="text" [(ngModel)]="selectedState"></ion-input>
+              <ion-input formControlName="selectedState" required type="text" [(ngModel)]="selectedState"></ion-input>
             </ion-item>
           </ion-list>
-  <button class="button-style" ion-button [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+  <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+        </form>
   <p>Or</p>
-  <button class="button-style" ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
-  <!-- <button ion-button (click)="callService()">Get SERVICE</button> -->
+  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
     </ion-col> 
   </ion-row>
   <p><strong>Your Current Location:</strong></p>
-  <!-- <p>Lattitude: {{lat}}</p>
-  <p>Longitude: {{long}}</p> -->
   <p>{{geoLocation}}</p>
 </ion-content>
