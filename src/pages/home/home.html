@@ -12,24 +12,23 @@
 
   <ion-row center>  
     <ion-col text-center>
+      <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
         <ion-list>
             <ion-item>
               <ion-label stacked>City</ion-label>
-              <ion-input  id="city" type="text" [(ngModel)]="selectedCity"></ion-input>
+              <ion-input formControlName="selectedCity" required type="text" [(ngModel)]="selectedCity"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label stacked>State</ion-label>
-              <ion-input  id="state" type="text" [(ngModel)]="selectedState"></ion-input>
+              <ion-input formControlName="selectedState" required type="text" [(ngModel)]="selectedState"></ion-input>
             </ion-item>
           </ion-list>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+  <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+        </form>
   <p>Or</p>
   <button ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
-  <!-- <button ion-button (click)="callService()">Get SERVICE</button> -->
     </ion-col> 
   </ion-row>
   <p><strong>Your Current Location:</strong></p>
-  <!-- <p>Lattitude: {{lat}}</p>
-  <p>Longitude: {{long}}</p> -->
   <p>{{geoLocation}}</p>
 </ion-content>
