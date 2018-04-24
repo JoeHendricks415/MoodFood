@@ -19,6 +19,7 @@ export class EatsPage {
   selectedItem = "";
   titleItem = "";
   stringURL = "";
+
   userInput:string = "";
 
   itemList: any;
@@ -48,6 +49,7 @@ export class EatsPage {
         // Use this one for the Yelp Provider ... it's not returning data fast enough. Needs fix
         // this.getDataTest(this.selectedItem, this.cityAndState);
       });   
+
   }
 
   checkForSelectedItem(){

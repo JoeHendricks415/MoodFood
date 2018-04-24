@@ -62,5 +62,5 @@ export class ListPage {
 
     console.log("Selected Item", item);
     this.navCtrl.push(EatsPage, item);
-  } 
+  }
 }

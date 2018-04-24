@@ -8,9 +8,14 @@ import { Observable } from 'rxjs/Observable';
 export class YelpProvider {
 
   term:string = "";
-  location:string = "";
+
+  location:any;
+  paramData: any;
+  // location:string = "";
   data: any;
   public items:any;
+
+
 
   constructor(public http: HttpClient) {
     let item = this.term;

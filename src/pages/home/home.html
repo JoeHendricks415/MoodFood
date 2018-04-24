@@ -22,12 +22,13 @@
               <ion-input formControlName="selectedState" required type="text" [(ngModel)]="selectedState"></ion-input>
             </ion-item>
           </ion-list>
-        <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params" (click)="saveLocation()">Save city</button>
+        <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params" (click)="saveLocationManually()">Save city</button>
         </form>
   <p>Or</p>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="saveLocation()">Use Current Location</button>
+  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="saveLocationGeo()">Use Current Location</button>
     </ion-col> 
   </ion-row>
-  <p><strong>Your Current Location:</strong></p>
-  <p>{{geoLocation}}</p>
+  <br>
+  <p align="center"><strong>Your Current Location:</strong></p>
+  <p align="center">{{city + " " + state}}</p>
 </ion-content>
