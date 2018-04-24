@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { YelpProvider } from '../../providers/yelp/yelp';
 import { DestinyPage } from '../destiny/destiny';
+import { HomePage } from '../home/home';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -15,60 +17,82 @@ export class EatsPage {
   public items:any;
   public mood:any;
   selectedItem = "";
+  titleItem = "";
   stringURL = "";
+  userInput:string = "";
+
+  itemList: any;
+  city= "";
+  state= "";
+  cityAndState = "";
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider) {
-    this.ionViewDidLoad();
-    this.getData();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider, public storage: Storage) {
+    //this.checkForStorageInput();
+    //this.ionViewDidEnter();
+    }
+
+    checkForStorageInput(){
+        return this.storage.get('location').then((list) => {
+        this.itemList= JSON.parse(list);
+        this.cityAndState = JSON.stringify(this.itemList.city)+JSON.stringify(this.itemList.state);
+        });
+    }
+
+    ionViewDidLoad(){
+      this.checkForStorageInput().then((res) => {
+        this.checkForSelectedItem();
+        
+        // This one for getData returns Yelp data fast but does not use a Provider.
+        this.getData(this.selectedItem, this.cityAndState);
+        
+        // Use this one for the Yelp Provider ... it's not returning data fast enough. Needs fix
+        // this.getDataTest(this.selectedItem, this.cityAndState);
+      });   
   }
 
-  ionViewDidLoad(){
-    if(this.navParams.get('title') === "Liquid Courage"){
-      this.stringURL = "http://localhost:8080/restaurants?term=bar&location=08078";
-      this.selectedItem = "Liquid Courage";
+  checkForSelectedItem(){
+     if(this.navParams.get('title') === "Liquid Courage"){
+      this.selectedItem = "bar";
+      this.titleItem = "Liquid Courage";
     } else if (this.navParams.get('title') === "Healthy"){
-      this.stringURL = "http://localhost:8080/restaurants?term=healthy&location=08078";
-      this.selectedItem = "Healthy";
+      this.selectedItem = "healthy";
+      this.titleItem = "Healthy";
     } else if (this.navParams.get('title') === "Celebration"){
-      this.stringURL = "http://localhost:8080/restaurants?term=celebration&location=08078";
-      this.selectedItem = "Celebration";
+      this.selectedItem = "celebration";
+      this.titleItem = "Celebration";
     } else if (this.navParams.get('title') === "Tired"){
-      this.stringURL = "http://localhost:8080/restaurants?term=coffee&location=08078";
-      this.selectedItem = "Tired";
+      this.selectedItem = "coffee";
+      this.titleItem = "Tired";
     } else if (this.navParams.get('title') === "Fancy"){
-      this.stringURL = "http://localhost:8080/restaurants?term=steak&location=08078";
-      this.selectedItem = "Fancy";
+      this.selectedItem = "steak";
+      this.titleItem = "Fancy";
     } else if(this.navParams.get('title') === "Hungover"){
-      this.stringURL = "http://localhost:8080/restaurants?term=greasy&location=08078";
-      this.selectedItem = "Hungover";
+      this.selectedItem = "greasy";
+      this.titleItem = "Hungover";
     } else if(this.navParams.get('title') === "In A Hurry"){
-      this.stringURL = "http://localhost:8080/restaurants?term=fastfood&location=08078";
-      this.selectedItem = "In A Hurry";
+      this.selectedItem = "fastfood";
+      this.titleItem = "In A Hurry";
     } else if(this.navParams.get('title') === "Munchies"){
-      this.stringURL = "http://localhost:8080/restaurants?term=munchie&location=08078";
-      this.selectedItem = "Munchies";
+      this.selectedItem = "munchies";
+      this.titleItem = "Munchies";
     } else if(this.navParams.get('title') === "Sad"){
-      this.stringURL = "http://localhost:8080/restaurants?term=icecream&location=08078";
-      this.selectedItem = "Sad";
+      this.selectedItem = "icecream";
+      this.titleItem = "Sad";
     } else if(this.navParams.get('title') === "Lo-On-Sugar"){
-      this.stringURL = "http://localhost:8080/restaurants?term=candy&location=08078";
-      this.selectedItem = "Lo-On-Sugar";
+      this.selectedItem = "candy";
+      this.titleItem = "Lo-On-Sugar";
     }
   }
 
-  goAnOtherPage() {
-    this.navCtrl.push(DestinyPage);
+  getDataTest(term:String, location:String){
+    this.items = this.yelpProvider.getRestaurants(term, location);
   }
 
-  getData(){
-    let data: Observable<any> = this.http.get(this.stringURL);
+  getData(term:String, location:String){
+    const endpointTwo = "http://localhost:8080/restaurants?term="+term+"&location="+location;
+    let data: Observable<any> = this.http.get(endpointTwo);
     data.subscribe(result => {
       this.items = result;
     });
   }
-
-  // callService(){
-  //   this.ionViewDidLoad();
-  //   this.items = this.yelpProvider.getRestaurants("icecream","08087");
-  // }
 }

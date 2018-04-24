@@ -17,7 +17,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { IntroPage } from '../pages/intro/intro';
 import { YelpProvider } from '../providers/yelp/yelp';
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -50,6 +49,7 @@ import { YelpProvider } from '../providers/yelp/yelp';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     YelpProvider,
+    
   ]
 })
 export class AppModule {}

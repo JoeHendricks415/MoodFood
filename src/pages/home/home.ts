@@ -8,6 +8,7 @@ import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EatsPage } from '../eats/eats';
 
 
 @Component({
@@ -29,7 +30,6 @@ export class HomePage {
   userInput:string = "";
   geoLocation:string = "";
  
- 
   constructor(navCtrl: NavController, public geo: Geolocation, public http: HttpClient, public storage: Storage) {
     this.params = {id:this.geoLocation};
     this.pushPage = ListPage;
@@ -39,8 +39,27 @@ export class HomePage {
       selectedState: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')])
     });
     this.userInput = this.selectedCity + " " +this.selectedState;
+    
+    this.storage.get('location').then((val) =>{
+      if (val != null){
+        let location = JSON.parse(val);
+        this.selectedCity = location.city;
+        this.selectedState = location.state;
+      } else {
+        this.selectedCity = "Beach Haven";
+        this.selectedState = 'NJ';
+      }
+    });
   }
 
+  saveLocation(){
+    let location = {
+      city: this.selectedCity,
+      state: this.selectedState
+    }
+    this.storage.set('location', JSON.stringify(location));
+    console.log(this.selectedCity + this.selectedState);
+  }
 
   getCoordinates(){
     let options = {
@@ -56,12 +75,18 @@ export class HomePage {
     
   }
 
+  userLocation(city: string, state: string) {
+    this.navCtrl.push(EatsPage, {
+    userInput: city + state
+    });  
+  } 
+
 //convert input from user to postal_code to be sent as location passed to backend
   setInput(){
     
     this.params = {id:this.userInput};
-    this.pushPage = ListPage;
-  
+    // this.pushPage = ListPage;
+    this.pushPage = EatsPage;
   }
 
   //take result array and get address_component, type, postal_code from it and set as location to be passed to backend
@@ -69,14 +94,11 @@ export class HomePage {
     let data: Observable<any> = this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+this.lat+','+this.long+'&key=AIzaSyAoDH7pW6AzXoIUqg0EXyMNWfNbrLSlL4U');
     data.subscribe(result => {
       this.locationJson = result;
-
       // console.log(JSON.stringify(this.locationJson));
-
       // console.log(this.locationJson);
       // console.log(JSON.stringify(this.locationJson));
       this.geoLocation = this.mapResults(this.locationJson);
       console.log(this.geoLocation);
-      
     });
   }
   

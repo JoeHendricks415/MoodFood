@@ -31,7 +31,7 @@ export class MyApp {
     this.pages = [
       { title: 'Location', component: HomePage },
       { title: 'Mood', component: ListPage },
-      { title: 'Local Eats', component: EatsPage },
+      // { title: 'Local Eats', component: EatsPage },
       { title: 'About Us', component: AboutPage }
     ];
     this.activePage = this.pages[0];
