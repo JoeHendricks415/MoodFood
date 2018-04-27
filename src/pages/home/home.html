@@ -14,12 +14,18 @@
       <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
         <ion-list>
             <ion-item class="input-style">
-              <ion-label stacked>City</ion-label>
-              <ion-input formControlName="selectedCity" required type="text" [(ngModel)]="selectedCity"></ion-input>
+              <ion-label floating>City, State</ion-label>
+              <ion-input placeholder="" #cityInput (keyup)=onKey(cityInput) formControlName="selectedCityAndState" required type="text" [(ngModel)]="selectedCityAndState"></ion-input>
+              <p *ngFor="let place of filteredCities">
+                  {{place.city}},
+                  {{place.state}}
+                </p>
             </ion-item>
-            <ion-item class="input-style">
-              <ion-label stacked>State</ion-label>
-              <ion-input formControlName="selectedState" required type="text" [(ngModel)]="selectedState"></ion-input>
+            
+          </ion-list>
+          <ion-list>
+            <ion-item *ngFor="let place of filteredCities">
+              {{place.city}}, {{place.state}}
             </ion-item>
           </ion-list>
         <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params" (click)="saveLocationManually()">Save city</button>

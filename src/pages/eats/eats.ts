@@ -28,18 +28,21 @@ export class EatsPage {
   cityAndState = "";
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider, public storage: Storage) {
-    //this.checkForStorageInput();
-    //this.ionViewDidEnter();
+    
     }
 
     checkForStorageInput(){
         return this.storage.get('location').then((list) => {
-        this.itemList= JSON.parse(list);
-        this.cityAndState = JSON.stringify(this.itemList.city)+JSON.stringify(this.itemList.state);
+          console.log(list);
+          this.cityAndState = list;
+        
         });
     }
 
     ionViewDidLoad(){
+
+      console.log(this.items)
+
       this.checkForStorageInput().then((res) => {
         this.checkForSelectedItem();
         
@@ -94,7 +97,9 @@ export class EatsPage {
     const endpointTwo = "http://localhost:8080/restaurants?term="+term+"&location="+location;
     let data: Observable<any> = this.http.get(endpointTwo);
     data.subscribe(result => {
+      
       this.items = result;
+      console.log(this.items)
     });
   }
 }

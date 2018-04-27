@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, Loading, NavParams } from 'ionic-angular';
 import { ListPage } from '../list/list';
 import { IntroPage } from '../intro/intro';
@@ -15,59 +15,75 @@ import { EatsPage } from '../eats/eats';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   form:FormGroup;
   params: Object;
   pushPage:any;
   navCtrl: any;
 
-  selectedCity: string = "";
-  selectedState: string = "";
+  selectedCityAndState: string = "";
   lat: any;
   long: any;
   locationJson: any;
   city:string;
   state:string;
+  location:string;
   
+  cities = [];
+  filteredCities = [];
  
-  constructor(navCtrl: NavController, public geo: Geolocation, public http: HttpClient, public storage: Storage) {
-    this.params = {id:this.geo};
+  constructor(navCtrl: NavController, public geo: Geolocation, public http: HttpClient, public storage: Storage, public yelpProvider: YelpProvider) {
     this.pushPage = ListPage;
     this.getCoordinates();
     this.form = new FormGroup({
-      selectedCity: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      selectedState: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')])
+      selectedCityAndState: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')])
     });
     //this.userInput = this.selectedCity + " " +this.selectedState;
-    this.storage.get('location').then((val) =>{
-      if (val != null){
-        let location = JSON.parse(val);
-        this.selectedCity = location.city;
-        this.selectedState = location.state;
-      } else {
-        this.selectedCity = "Beach Haven";
-        this.selectedState = 'NJ';
-      }
-    });
+    // this.storage.get('location').then((val) =>{
+    //   if (val != null){
+    //     let location = JSON.parse(val);
+    //     this.selectedCity = location.city;
+    //     this.selectedState = location.state;
+    //   } else {
+    //     this.selectedCity = "Beach Haven";
+    //     this.selectedState = 'NJ';
+    //   }
+    // });
+  }
+  ngOnInit() {
+    this.yelpProvider.getCities().subscribe( data =>  this.cities = [].slice.call(data));
+  }
+
+  onKey(element) { 
+    const currentInput = element.value;
+    if(currentInput !== ""){
+      const regExpression = new RegExp(currentInput, 'gi');
+      const matchedCities = this.cities.filter( place => place.city.match(regExpression) || place.state.match(regExpression));
+      this.filteredCities = matchedCities;
+    }
+    else {
+      this.filteredCities = [];
+    }
+
+    console.log(this.filteredCities);
+
   }
 
   saveLocationManually(){
-    let location = {
-      city: this.selectedCity,
-      state: this.selectedState
-    }
+    let location = this.selectedCityAndState;
+    console.log(location)
     this.storage.set('location', JSON.stringify(location));
-    console.log(this.selectedCity + this.selectedState);
+    console.log(this.location);
   }
 
   saveLocationGeo(){
-    let location = {
-      city: this.city,
-      state: this.state
-    }
+    let location = this.location;
+    console.log(location)
+    console.log(this.selectedCityAndState);
+
     this.storage.set('location', JSON.stringify(location));
-    console.log(this.selectedCity + this.selectedState);
+
   }
 
   getCoordinates(){
@@ -82,29 +98,21 @@ export class HomePage {
     }).catch( err => console.log(err));
   }
 
-  userLocation(city: string, state: string) {
+  userLocation(location: string) {
     this.navCtrl.push(EatsPage, {
-    userInput: city + state
+    userInput: this.selectedCityAndState
     });  
   } 
 
-//convert input from user to postal_code to be sent as location passed to backend
-  setInput(){
-    
-    this.pushPage = ListPage; 
-  
-  }
-
-  //take result array and get address_component, type, postal_code from it and set as location to be passed to backend
   getLocation(){
     let data: Observable<any> = this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+this.lat+','+this.long+'&key=AIzaSyAoDH7pW6AzXoIUqg0EXyMNWfNbrLSlL4U');
     data.subscribe(result => {
       this.locationJson = result;
       console.log(this.locationJson);
-      // console.log(JSON.stringify(this.locationJson));
       this.city = this.mapCity(this.locationJson);
       this.state = this.mapState(this.locationJson);
-      console.log(this.city + " " + this.state);
+      this.location = this.city + this.state;
+      console.log(this.location);
       
     });
   }
@@ -140,4 +148,5 @@ export class HomePage {
     }
   });
 }
-}
+  }
+
