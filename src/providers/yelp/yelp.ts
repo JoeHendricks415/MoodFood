@@ -11,10 +11,10 @@ export class YelpProvider {
 
   location:any;
   paramData: any;
-  // location:string = "";
   data: any;
   public items:any;
 
+  endpoint = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
 
   constructor(public http: HttpClient) {
@@ -22,7 +22,6 @@ export class YelpProvider {
   }
 
   getRestaurants(term:String, location:String){
-    //  const endpoint = `http://localhost:8080/restaurants?term=${term}&location=${location}`;
       const endpointTwo = "http://localhost:8080/restaurants?term="+term+"&location="+location;
 
       let data: Observable<any> = this.http.get(endpointTwo);
@@ -30,5 +29,8 @@ export class YelpProvider {
       this.items = result;
       });
     return this.items;
+    }
+    getCities() {
+      return this.http.get(this.endpoint);
     }
 }
