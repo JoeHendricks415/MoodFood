@@ -88,7 +88,7 @@ export class HomePage implements OnInit{
 
   saveLocationGeo(){
     let location = this.location;
-    console.log(location)
+    console.log(location);
     console.log(this.selectedCityAndState);
 
     this.storage.set('location', JSON.stringify(location));
@@ -122,7 +122,6 @@ export class HomePage implements OnInit{
       this.state = this.mapState(this.locationJson);
       this.location = this.city + this.state;
       console.log(this.location);
-      
     });
   }
   
