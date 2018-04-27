@@ -8,6 +8,7 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
+    "test": "jasmine",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
   },
@@ -26,8 +27,9 @@
     "@ionic-native/splash-screen": "4.6.0",
     "@ionic-native/status-bar": "4.6.0",
     "@ionic/pro": "1.0.20",
-    "@ionic/storage": "2.1.3",
+    "@ionic/storage": "^2.1.3",
     "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-inappbrowser": "^3.0.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.8",
@@ -36,6 +38,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
+    "@types/jasmine": "^2.8.6",
+    "jasmine": "^3.1.0",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
@@ -43,7 +47,8 @@
     "plugins": {
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "cordova-plugin-inappbrowser": {}
     }
   }
 }

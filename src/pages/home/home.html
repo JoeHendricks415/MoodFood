@@ -1,35 +1,41 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="color1" hideBackButton="false">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title align="right">Location</ion-title>
+    <ion-title align-title="right"><span text-color="my-custom-color">Location</span></ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3 align ="center">Enter your location...</h3>
-
+<ion-content class="bg-style" padding>
+  <h3 align ="center">Enter a location...</h3>
   <ion-row center>  
     <ion-col text-center>
+      <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
         <ion-list>
-            <ion-item>
-              <ion-label stacked>City</ion-label>
-              <ion-input  id="city" type="text" [(ngModel)]="selectedCity"></ion-input>
+            <ion-item class="input-style">
+              <ion-label floating>City and State</ion-label>
+              <ion-input placeholder="" #cityInput (keyup)=onKey(cityInput) formControlName="selectedCityAndState" required type="text" [(ngModel)]="selectedCityAndState"></ion-input>
+              <p *ngFor="let place of filteredCities">
+                  {{place.city}},
+                  {{place.state}}
+                </p>
             </ion-item>
-            <ion-item>
-              <ion-label stacked>State</ion-label>
-              <ion-input  id="state" type="text" [(ngModel)]="selectedState"></ion-input>
-            </ion-item>
+            
           </ion-list>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="setInput()">Save city</button>
+          <ion-list>
+              <!--<button class="bg-style" ion-item *ngFor="let item of items" (click)="itemSelected(item)">-->
+          </ion-list>
+        <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params" (click)="saveLocationManually()">Save city</button>
+        </form>
+        <button class="bg-style" ion-item *ngFor="let place of filteredCities" (click)="saveAutoComplete(place.city, place.state)">
+            {{place.city}} {{place.state}}
+          </button>
   <p>Or</p>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="getLocation()">Use Current Location</button>
-  <!-- <button ion-button (click)="callService()">Get SERVICE</button> -->
+  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="saveLocationGeo()">Use Current Location</button>
     </ion-col> 
   </ion-row>
-  <p><strong>Your Current Location:</strong></p>
-  <!-- <p>Lattitude: {{lat}}</p>
-  <p>Longitude: {{long}}</p> -->
-  <p>{{geoLocation}}</p>
+  <br>
+  <p align="center"><strong>Your Current Location:</strong></p>
+  <p align="center">{{city + " " + state }}</p>
 </ion-content>

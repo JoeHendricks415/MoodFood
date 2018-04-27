@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { YelpProvider } from '../../providers/yelp/yelp';
+import { DestinyPage } from '../destiny/destiny';
+import { HomePage } from '../home/home';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -13,38 +16,90 @@ export class EatsPage {
 
   public items:any;
   public mood:any;
-  selectedItem: string;
+  selectedItem = "";
+  titleItem = "";
   stringURL = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider) {
-    this.ionViewDidLoad();
-    this.getData();
+  userInput:string = "";
+
+  itemList: any;
+  city= "";
+  state= "";
+  cityAndState = "";
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public yelpProvider: YelpProvider, public storage: Storage) {
+    
+    }
+
+    checkForStorageInput(){
+        return this.storage.get('location').then((list) => {
+          console.log(list);
+          this.cityAndState = list;
+        
+        });
+    }
+
+    ionViewDidLoad(){
+
+      console.log(this.items)
+
+      this.checkForStorageInput().then((res) => {
+        this.checkForSelectedItem();
+        
+        // This one for getData returns Yelp data fast but does not use a Provider.
+        this.getData(this.selectedItem, this.cityAndState);
+        
+        // Use this one for the Yelp Provider ... it's not returning data fast enough. Needs fix
+        // this.getDataTest(this.selectedItem, this.cityAndState);
+      });   
+
   }
 
-  ionViewDidLoad(){
-    if(this.navParams.get('title') === "Liquid Courage"){
-      //console.log("found match");
-      this.stringURL = "assets/mock/barsTest.json";
-      //console.log(this.stringURL);
-      //this.selectedItem = 'assets/mock/bars.json';
+  checkForSelectedItem(){
+     if(this.navParams.get('title') === "Liquid Courage"){
+      this.selectedItem = "bar";
+      this.titleItem = "Liquid Courage";
     } else if (this.navParams.get('title') === "Healthy"){
-      this.stringURL = 'assets/mock/healthy.json';
-      //console.log(this.navParams.get('title'));
+      this.selectedItem = "healthy";
+      this.titleItem = "Healthy";
+    } else if (this.navParams.get('title') === "Celebration"){
+      this.selectedItem = "celebration";
+      this.titleItem = "Celebration";
+    } else if (this.navParams.get('title') === "Tired"){
+      this.selectedItem = "coffee";
+      this.titleItem = "Tired";
+    } else if (this.navParams.get('title') === "Fancy"){
+      this.selectedItem = "steak";
+      this.titleItem = "Fancy";
+    } else if(this.navParams.get('title') === "Hungover"){
+      this.selectedItem = "greasy";
+      this.titleItem = "Hungover";
+    } else if(this.navParams.get('title') === "In A Hurry"){
+      this.selectedItem = "fastfood";
+      this.titleItem = "In A Hurry";
+    } else if(this.navParams.get('title') === "Munchies"){
+      this.selectedItem = "munchies";
+      this.titleItem = "Munchies";
+    } else if(this.navParams.get('title') === "Sad"){
+      this.selectedItem = "icecream";
+      this.titleItem = "Sad";
+    } else if(this.navParams.get('title') === "Lo-On-Sugar"){
+      this.selectedItem = "candy";
+      this.titleItem = "Lo-On-Sugar";
     }
   }
 
-  getData(){
-    //this.ionViewDidLoad();
-    //console.log(this.stringURL);
-    //let url = 'assets/mock/bars.json';
-    let data: Observable<any> = this.http.get(this.stringURL);
+  getDataTest(term:String, location:String){
+    this.items = this.yelpProvider.getRestaurants(term, location);
+  }
+
+  getData(term:String, location:String){
+    const endpointTwo = "http://localhost:8080/restaurants?term="+term+"&location="+location;
+    let data: Observable<any> = this.http.get(endpointTwo);
     data.subscribe(result => {
+      
       this.items = result;
+      console.log(this.items)
     });
   }
-  callService(){
-    this.yelpProvider.getRestaurants(null,null);
-
-  }
-  
 }

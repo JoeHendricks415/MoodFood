@@ -3,13 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title align="right">Moods</ion-title>
+    <ion-title align-title="right">Moods</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bg-style">
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+    <button class="bg-style" ion-item *ngFor="let item of items" (click)="itemSelected(item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
       {{item.title}}
       <!--<div class="item-note" item-end>
