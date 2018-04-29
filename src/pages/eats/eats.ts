@@ -94,7 +94,7 @@ export class EatsPage {
   }
 
   getData(term:String, location:String){
-    const endpointTwo = "http://localhost:8080/restaurants?term="+term+"&location="+location;
+    const endpointTwo = "https://mood-foods.herokuapp.com/restaurants?term="+term+"&location="+location;
     let data: Observable<any> = this.http.get(endpointTwo);
     data.subscribe(result => {
       

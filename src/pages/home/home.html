@@ -37,5 +37,12 @@
   </ion-row>
   <br>
   <p align="center"><strong>Your Current Location:</strong></p>
-  <p align="center">{{city + state}}</p>
+  <div *ngIf="currentInput === 'Searching location...'">
+      <p align="center">
+        <ion-spinner name="dots"></ion-spinner>
+      </p>
+  </div>
+  <div *ngIf="currentInput !== 'Searching location...'">
+      <p align="center">{{currentInput}}</p>
+  </div>
 </ion-content>

@@ -37,6 +37,7 @@ export class HomePage implements OnInit{
   constructor(navCtrl: NavController, public geo: Geolocation, public http: HttpClient, public storage: Storage, public yelpProvider: YelpProvider) {
     this.pushPage = ListPage;
     this.getCoordinates();
+    this.currentInput = "Searching location...";
     this.form = new FormGroup({
       selectedCityAndState: new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z ]*')])
     });
@@ -51,6 +52,7 @@ export class HomePage implements OnInit{
     //     this.selectedState = 'NJ';
     //   }
     // });
+    
   }
   ngOnInit() {
     this.yelpProvider.getCities().subscribe( data =>  this.cities = [].slice.call(data));
@@ -121,6 +123,7 @@ export class HomePage implements OnInit{
       this.city = this.mapCity(this.locationJson);
       this.state = this.mapState(this.locationJson);
       this.location = this.city + this.state;
+      this.currentInput = this.city + " " + this.state;
       console.log(this.location);
     });
   }
