@@ -40,19 +40,16 @@ export class EatsPage {
     }
 
     ionViewDidLoad(){
-
       console.log(this.items)
-
       this.checkForStorageInput().then((res) => {
         this.checkForSelectedItem();
-        
+      
         // This one for getData returns Yelp data fast but does not use a Provider.
         this.getData(this.selectedItem, this.cityAndState);
         
         // Use this one for the Yelp Provider ... it's not returning data fast enough. Needs fix
         // this.getDataTest(this.selectedItem, this.cityAndState);
       });   
-
   }
 
   checkForSelectedItem(){

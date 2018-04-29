@@ -26,13 +26,13 @@
           <ion-list>
               <!--<button class="bg-style" ion-item *ngFor="let item of items" (click)="itemSelected(item)">-->
           </ion-list>
-        <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params" (click)="saveLocationManually()">Save city</button>
+        <button ion-button type="submit"[disabled]="!form.valid" [navPush]="pushPage" [navParams]="params" (click)="saveLocationManually()" ion-button color="dark">Save city</button>
         </form>
         <button class="bg-style" ion-item *ngFor="let place of filteredCities" (click)="saveAutoComplete(place.city, place.state)">
             {{place.city}} {{place.state}}
           </button>
   <p>Or</p>
-  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="saveLocationGeo()">Use Current Location</button>
+  <button ion-button [navPush]="pushPage" [navParams]="params"(click)="saveLocationGeo()" ion-button color="dark">Use Current Location</button>
     </ion-col> 
   </ion-row>
   <br>

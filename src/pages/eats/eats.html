@@ -15,9 +15,17 @@
         <div class="center"><p style="font-size:23px"><b>{{item.name}}</b></p>
           <p style="font-size:16px"> {{item.rating}} Stars and {{ item.is_closed === 'false' ? 'We Are Closed!' : 'We Are Open!' }}</p>
           <p style="font-size:14px">Category: {{item.categories[0].title}}</p>
-          <ion-card class="bg-style"><p><a href="tel:{{item.display_phone}}" class="button button-positive">Give Us A Ring-A-Ling!</a></p>
-          <p><a href="http://maps.google.com/?q={{item.location.display_address[0]}} {{item.location.display_address[1]}}" target="_blank">Find Out Where We Are!</a></p>
-          <p><a href="{{item.url}}" target="_blank">Visit Our Website!</a></p></ion-card>
+        <ion-card class="bg-style">
+          <a ion-item detail-none href="tel:{{item.display_phone}}" target="_blank" color="dark">
+                <div class="center"><ion-icon name="call"></ion-icon>  Give Us A Ring!</div>
+          </a><p></p>          
+          <a ion-item detail-none href="http://maps.google.com/?q={{item.location.display_address[0]}} {{item.location.display_address[1]}}" target="_blank" color="dark">
+            <div class="center"><ion-icon name="navigate"></ion-icon> Find Out Where We Are!</div>
+          </a> <p></p>
+          <a ion-item detail-none href="{{item.url}}" target="_blank" color="dark">
+              <div class="center"> <ion-icon name="book"></ion-icon> Visit Our Website!</div>
+          </a>
+        </ion-card>
         </div>
         </ion-card-title>
     </ion-card-content>

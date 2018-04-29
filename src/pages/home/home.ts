@@ -68,9 +68,7 @@ export class HomePage implements OnInit{
     else {
       this.filteredCities = [];
     }
-
     console.log(this.filteredCities);
-
   }
 
   saveAutoComplete(city: string, state: string){
@@ -156,8 +154,8 @@ export class HomePage implements OnInit{
     if(!done){
       this.storage.set('intro-done', true);
       this.navCtrl.setRoot(IntroPage);
-    }
-  });
-}
+      }
+    });
   }
+}
 

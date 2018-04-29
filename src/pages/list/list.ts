@@ -34,34 +34,11 @@ export class ListPage {
     }
   }
 
-  itemPushBars(){
-    // for(let i = 0; i < this.items.length; i++){
-    //   if(this.items[i] === {title: 'Tired', icon: 'cafe'}){
-    //     this.navCtrl.push(EatsPage);
-    //   } else {
-        
-    //   }
-    // }
-    let barsSelected = {
-      title: 'bars'
-    };
-    this.navCtrl.setRoot(EatsPage, barsSelected);
-    //  item: item
-  }
-
-  itemPushHealthy(){
-    let healthySelected = {
-      title: 'healthy'
-    };
-    this.navCtrl.setRoot(EatsPage, healthySelected);
-  }
-
   getSelectedItem(){
     return this.selectedItem;
   }
 
   itemSelected(item: string) {
-
     console.log("Selected Item", item);
     this.navCtrl.push(EatsPage, item);
   }
