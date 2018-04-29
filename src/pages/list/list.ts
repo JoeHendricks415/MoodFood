@@ -19,12 +19,14 @@ export class ListPage {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
     this.icons = ['trophy', 'cafe', 'bowtie', 'nutrition', 'pizza', 'car',
-    'beer', 'boat', 'sad', 'ice-cream'];
+    'beer', 'glasses', 'ice-cream', 'ice-cream', 'nutrition', 'cash', 'car', 'boat',
+    'egg', 'rose'];
     this.moods = ['Celebration', 'Tired', 'Fancy', 'Healthy', 'Hungover', 'In A Hurry',
-    'Liquid Courage', 'Munchies', 'Sad', 'Lo-On-Sugar'];
+    'Liquid Courage', 'Munchies', 'Sad', 'Lo-On-Sugar', 'Fruity', 'Broke', 'Lazy',
+     'Fishy', 'Morning Delight', 'Organic'];
 
     this.items = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 16; i++) {
       this.items.push({
         title: this.moods[i],
         icon: this.icons[i]

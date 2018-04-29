@@ -56,7 +56,7 @@ export class EatsPage {
   }
 
   checkForSelectedItem(){
-     if(this.navParams.get('title') === "Liquid Courage"){
+    if(this.navParams.get('title') === "Liquid Courage"){
       this.selectedItem = "bar";
       this.titleItem = "Liquid Courage";
     } else if (this.navParams.get('title') === "Healthy"){
@@ -86,6 +86,24 @@ export class EatsPage {
     } else if(this.navParams.get('title') === "Lo-On-Sugar"){
       this.selectedItem = "candy";
       this.titleItem = "Lo-On-Sugar";
+    } else if(this.navParams.get('title') === "Fruity"){
+      this.selectedItem = "fruits";
+      this.titleItem = "Fruity";
+    } else if(this.navParams.get('title') === "Broke"){
+      this.selectedItem = "dollar store";
+      this.titleItem = "Broke";
+    } else if(this.navParams.get('title') === "Lazy"){
+      this.selectedItem = "delivery";
+      this.titleItem = "Lazy";
+    } else if(this.navParams.get('title') === "Fishy"){
+      this.selectedItem = "sushi";
+      this.titleItem = "Fishy";
+    } else if(this.navParams.get('title') === "Morning Delight"){
+      this.selectedItem = "breakfast";
+      this.titleItem = "Morning Delight";
+    } else if(this.navParams.get('title') === "Organic"){
+      this.selectedItem = "organic";
+      this.titleItem = "Organic";
     }
   }
 
